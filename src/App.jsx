@@ -208,7 +208,7 @@ function App() {
           <div className="card shadow-sm">
             <div className="card-body bg-success bg-opacity-25">
               <h1 className="fs-3 text-center fw-bold mb-4 text-light fw-bold">
-                衣裝 後台登入
+                GAME
               </h1>
 
               <form onSubmit={handleSubmit}>
