@@ -44,7 +44,7 @@ function App() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) =>{
     e.preventDefault();
 
     try {
@@ -56,7 +56,7 @@ function App() {
       getData();
 
       setisAuth(true);
-    } catch (err) {
+    }catch(err){
       alert("登入失敗");
     }
   };
@@ -64,7 +64,7 @@ function App() {
   return (
     <>
 {isAuth ? (
-  <div className="container mt-5">
+  <div className="container-fluid pt-5 bg-success bg-opacity-10">
     <div className="row g-4">
       {/* 左：產品列表 */}
       <div className="col-12">
@@ -201,14 +201,14 @@ function App() {
     </div>
   </div>
       ) : (
-  <div className="container-fluid bg-light min-vh-100 d-flex align-items-center">
+  <div className="container-fluid bg-success bg-opacity-10 min-vh-100 d-flex align-items-center">
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-md-4">
           <div className="card shadow-sm">
-            <div className="card-body">
-              <h1 className="h4 text-center fw-bold mb-4">
-                寵物項鍊 後台登入
+            <div className="card-body bg-success bg-opacity-25">
+              <h1 className="fs-3 text-center fw-bold mb-4 text-light fw-bold">
+                衣裝 後台登入
               </h1>
 
               <form onSubmit={handleSubmit}>
@@ -239,10 +239,10 @@ function App() {
                 </div>
 
                 <button
-                  className="btn btn-primary w-100"
+                  className="fs-4 btn btn-success w-100 bg-success bg-opacity-10 text-light fw-bold"
                   type="submit"
                 >
-                  登入
+                  submit
                 </button>
               </form>
             </div>
