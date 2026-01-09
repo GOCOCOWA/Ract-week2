@@ -17,8 +17,8 @@ function App() {
 
   async function checkLogin() {
     try {
-      const token = document.cookie.split("; ").find((row) => row.startsWith("hexToken="))?.split("=")[1];
-      axios.defaults.headers.common.Authorization = token;
+        const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/,"$1",);
+        axios.defaults.headers.common['Authorization'] = token;
 
       const res = await axios.post(`${API_BASE}/api/user/check`);
       console.log(res);
@@ -29,10 +29,8 @@ function App() {
 
   async function getData() {
     try {
-      const response = await axios.get(
-        `${API_BASE}/api/${API_PATH}/admin/products`
-      );
-      setProducts(response.data.products);
+      const res = await axios.get(`${API_BASE}/api/${API_PATH}/admin/products`);
+      setProducts(res.data.products);
     } catch (err) {
       console.error(err);
     }
@@ -53,7 +51,7 @@ function App() {
       const response = await axios.post(`${API_BASE}/admin/signin`, formData);
       const { token, expired } = response.data;
       document.cookie = `hexToken=${token};expires=${new Date(expired)};`;
-      axios.defaults.headers.common.Authorization = `${token}`;
+      axios.defaults.headers.common['Authorization'] = token;
 
       getData();
 
@@ -69,7 +67,7 @@ function App() {
   <div className="container mt-5">
     <div className="row g-4">
       {/* 左：產品列表 */}
-      <div className="col-md-6">
+      <div className="col-12">
         <div className="card shadow-sm h-100">
           <div className="card-header bg-white d-flex justify-content-between align-items-center">
             <h5 className="mb-0 fw-bold">產品列表</h5>
@@ -139,7 +137,8 @@ function App() {
       </div>
 
       {/* 右：產品細節 */}
-      <div className="col-md-6">
+      <div className="col-0 col-md-3"></div>
+      <div className="col-12 col-md-6">
         <div className="card shadow-sm h-100">
           <div className="card-header bg-white">
             <h5 className="mb-0 fw-bold">單一產品細節</h5>
@@ -198,6 +197,7 @@ function App() {
           </div>
         </div>
       </div>
+      <div className="col-0 col-md-3"></div>
     </div>
   </div>
       ) : (
